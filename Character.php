@@ -38,6 +38,13 @@ class Character{
         $stmt->execute();
         $planet = $stmt->fetch(PDO::FETCH_ASSOC);
 
+        $query="SELECT * FROM vehicles WHERE id = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(1, $character['vehicle_id']);
+        $stmt->execute();
+        $vehicle = $stmt->fetch(PDO::FETCH_ASSOC);
+
+
         $query="SELECT * FROM species WHERE id IN (SELECT species_id FROM character_species WHERE character_id = ?)";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(1, $this->id);
@@ -67,7 +74,7 @@ class Character{
         $this->species = $character_species;
         $this->films = ['http://localhost/swapi/films/'.$film['episode_id']];
         $this->starships = [];
-        $this->vehicles = [];
+        $this->vehicles = ['http://localhost/swapi/vehicles/'.$vehicle['id']];
         $this->url = "http://localhost/swapi/people/{$character['id']}";
 }
 }
