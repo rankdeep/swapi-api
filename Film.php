@@ -57,7 +57,7 @@ class Film{
         $this->producer = $film['producer'];
         $this->release_date = $film['release_date'];
         $this->characters = $film_characters;
-        $this->planets = [];
+        $this->planets = $species_planet;
         $this->starships = [];
         $this->vehicles = [];
         $this->species = [];
