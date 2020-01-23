@@ -38,12 +38,6 @@ class Character{
         $stmt->execute();
         $planet = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        //$query="SELECT * FROM species WHERE id = ?";
-        //stmt = $this->conn->prepare($query);
-        //$stmt->bindParam(1, $character['species_id']);
-        //$stmt->execute();
-        //$species = $stmt->fetch(PDO::FETCH_ASSOC);
-
         $query="SELECT * FROM species WHERE id IN (SELECT species_id FROM character_species WHERE character_id = ?)";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(1, $this->id);
@@ -54,13 +48,11 @@ class Character{
             $character_species[] = 'http://localhost/swapi/species/'.$species['id'];
         }
 
-
         $query="SELECT * FROM films WHERE episode_id = ?";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(1, $character['film_id']);
         $stmt->execute();
         $film = $stmt->fetch(PDO::FETCH_ASSOC);
-
 
         $this->id = $character['id'];
         $this->name = $character['name'];
