@@ -36,6 +36,15 @@ class Planet{
         $stmt->execute();
         $people = $stmt->fetch(PDO::FETCH_ASSOC);
 
+        $query="SELECT * FROM films WHERE episode_id IN (SELECT film_id FROM species_planet WHERE planet_id = ?)";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(1, $this->id);
+        $stmt->execute();
+        $films = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $species_planet = [];
+        foreach ($films as $key => $film) {
+            $species_planet[] = 'http://localhost/swapi/films/'.$film['episode_id'];
+        }
 
         $this->name = $planets['name'];
         $this->id = $planets['id'];
@@ -48,7 +57,7 @@ class Planet{
         $this->surface_water = $planets['surface_water'];
         $this->population = $planets['population'];
         $this->residents = ['http://localhost/swapi/people/'.$people['id']];
-        $this->films = [];
+        $this->films = $species_planet;
         $this->url = "http://localhost/swapi/planets/{$planets['id']}";
 }
 }
