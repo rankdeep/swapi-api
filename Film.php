@@ -44,9 +44,9 @@ class Film{
         $stmt->bindParam(1, $this->episode_id);
         $stmt->execute();
         $planets = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $species_planet = [];
+        $species_planets = [];
         foreach ($planets as $key => $planet) {
-            $species_planet[] = 'http://localhost/swapi/planets/'.$planet['id'];
+            $species_planets[] = 'http://localhost/swapi/planets/'.$planet['id'];
         }
 
         $query="SELECT * FROM species WHERE id IN (SELECT species_id FROM species_planet WHERE film_id = ?)";
@@ -87,7 +87,7 @@ class Film{
         $this->producer = $film['producer'];
         $this->release_date = $film['release_date'];
         $this->characters = $film_characters;
-        $this->planets = $species_planet;
+        $this->planets = $species_planets;
         $this->starships = $starship_pilots;
         $this->vehicles = $vehicle_films;
         $this->species = $species_planet;
