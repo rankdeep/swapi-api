@@ -1,0 +1,23 @@
+RewriteEngine On # Turn on the rewriting engine
+RewriteRule ^people/?$ CharacterEndpoints.php [NC,L]
+RewriteRule ^people/([0-9]+)/?$ CharacterEndpoints.php?id=$1 [NC,L]
+
+RewriteEngine On # Turn on the rewriting engine
+RewriteRule ^planets/?$ planets.php [NC,L]
+RewriteRule ^planets/([0-9]+)/?$ PlanetEndpoints.php?id=$1 [NC,L]
+
+RewriteEngine On # Turn on the rewriting engine
+RewriteRule ^species/?$ species.php [NC,L]
+RewriteRule ^species/([0-9]+)/?$ SpeciesEndpoints.php?id=$1 [NC,L]
+
+RewriteEngine On # Turn on the rewriting engine
+RewriteRule ^starships/?$ starships.php [NC,L]
+RewriteRule ^starships/([0-9]+)/?$ StarshipEndpoints.php?id=$1 [NC,L]
+
+RewriteEngine On # Turn on the rewriting engine
+RewriteRule ^vehicles/?$ vehicles.php [NC,L]
+RewriteRule ^vehicles/([0-9]+)/?$ VehicleEndpoints.php?id=$1 [NC,L]
+
+RewriteEngine On # Turn on the rewriting engine
+RewriteRule ^films/?$ films.php [NC,L]
+RewriteRule ^films/([0-9]+)/?$ FilmEndpoints.php?episode_id=$1 [NC,L]

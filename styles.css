@@ -1,0 +1,135 @@
+.byline span {
+  animation: spin-letters 7s linear infinite;
+}
+.byline {
+  animation: move-byline 7s linear infinite;
+}
+
+.bottomline span {
+  animation: spin-letters 12s linear infinite;
+}
+.bottomline {
+  animation: move-byline 12s linear infinite;
+}
+
+@keyframes spin-letters {
+  0%, 10% {
+    opacity: 0;
+    transform: rotateY(60deg);
+  }
+  30% {
+    opacity: 1;
+  }
+  70%, 86% {
+    transform: rotateY(0);
+    opacity: 1;
+  }
+  95%, 100% {
+    opacity: 0;
+  }
+}
+
+@keyframes move-byline {
+  0% {
+    transform: translateZ(5em);
+  }
+  100% {
+    transform: translateZ(0);
+  }
+}
+.starwars-demo {
+  perspective: 800px;
+  transform-style: preserve3d;
+}
+
+.starwars-demo2 {
+  perspective: 800px;
+  transform-style: preserve3d;
+}
+
+body {
+  background:grey;
+}
+
+.starwars-demo {
+  height: 17em;
+  left: 50%;
+  position: absolute;
+  top: 13%;
+  transform: translate(-50%, -50%);
+  width: 34em;
+}
+
+.starwars-demo2 {
+  height: 17em;
+  left: 50%;
+  position: absolute;
+  bottom: 13%;
+  transform: translate(-50%, -50%);
+  width: 34em;
+}
+
+.byline span {
+  display: inline-block;
+}
+
+.bottomline span {
+  display: inline-block;
+}
+
+img {
+  width: 100%;
+}
+
+.byline {
+  position: absolute;
+}
+
+.bottomline{
+  position:absolute;
+}
+.byline {
+  color: #fff;
+  font-family: "ITC Serif Gothic", Lato;
+  font-size: 2.25em;
+  left: -2em;
+  letter-spacing: 0.4em;
+  right: -2em;
+  text-align: center;
+  text-transform: uppercase;
+  top: 39%;
+
+}
+
+.bottomline {
+  color: #fff;
+  font-family: "ITC Serif Gothic", Lato;
+  font-size: 1.25em;
+  letter-spacing: 0.1em;
+  left: -2em;
+  right: -2em;
+  text-align: center;
+  top: 2%;
+}
+
+@media only screen and (max-width: 600px) {
+  .starwars-demo {
+    font-size: 10px;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .starwars-demo {
+    font-size: 7px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .starwars-demo2 {
+    font-size: 10px;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .starwars-demo2 {
+    font-size: 7px;
+  }
+}
