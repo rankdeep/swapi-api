@@ -38,11 +38,22 @@ class Character{
         $stmt->execute();
         $planet = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        $query="SELECT * FROM species WHERE id = ?";
+        //$query="SELECT * FROM species WHERE id = ?";
+        //stmt = $this->conn->prepare($query);
+        //$stmt->bindParam(1, $character['species_id']);
+        //$stmt->execute();
+        //$species = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $query="SELECT * FROM species WHERE id IN (SELECT species_id FROM character_species WHERE character_id = ?)";
         $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(1, $character['species_id']);
+        $stmt->bindParam(1, $this->id);
         $stmt->execute();
-        $species = $stmt->fetch(PDO::FETCH_ASSOC);
+        $species = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $character_species = [];
+        foreach ($species as $key => $species) {
+            $character_species[] = 'http://localhost/swapi/species/'.$species['id'];
+        }
+
 
         $query="SELECT * FROM films WHERE episode_id = ?";
         $stmt = $this->conn->prepare($query);
@@ -61,7 +72,7 @@ class Character{
         $this->birth_year = $character['birth_year'];
         $this->gender = $character['gender'];
         $this->homeworld = 'http://localhost/swapi/planets/'.$planet['id'];
-        $this->species = ['http://localhost/swapi/species/'.$species['id']];
+        $this->species = $character_species;
         $this->films = ['http://localhost/swapi/films/'.$film['episode_id']];
         $this->starships = [];
         $this->vehicles = [];
